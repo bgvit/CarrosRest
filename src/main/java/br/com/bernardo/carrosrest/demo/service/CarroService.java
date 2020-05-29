@@ -65,9 +65,9 @@ public class CarroService {
 		return carroRepository.save(carro);
 	}
 
-	public Carro insert(Carro carro) {
+	public CarroDTO insert(Carro carro) {
 		Assert.isNull(carro.getId(), "Não foi possível inserir o registro");
-		return carroRepository.save(carro);
+		return CarroDTO.create(carroRepository.save(carro));
 	}
 
 	public void delete(Long id) {

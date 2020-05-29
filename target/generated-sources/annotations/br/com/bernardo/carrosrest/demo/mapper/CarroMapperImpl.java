@@ -7,11 +7,11 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-05-29T13:04:59-0300",
+    date = "2020-05-29T15:02:59-0300",
     comments = "version: 1.3.1.Final, compiler: javac, environment: Java 1.8.0_252 (Private Build)"
 )
 @Component
-public class CarMapperImpl implements CarMapper {
+public class CarroMapperImpl implements CarroMapper {
 
     @Override
     public CarroDTO toCarroDTO(Carro carro) {

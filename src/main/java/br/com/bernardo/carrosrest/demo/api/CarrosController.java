@@ -1,5 +1,6 @@
 package br.com.bernardo.carrosrest.demo.api;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import br.com.bernardo.carrosrest.demo.domain.Carro;
 import br.com.bernardo.carrosrest.demo.service.CarroService;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
 @RequestMapping("/api/v1/carros")
@@ -40,9 +42,20 @@ public class CarrosController {
 	}
 	/*Nomenclatura das variáveis, retornar JSON - testar, fazer um exceptionhandler*/
 	@PostMapping
-	public String post(@RequestBody Carro carro) {
-		Carro c = carroService.insert(carro);
-		return "Carro salvo com sucesso: " + c.getId();
+	public ResponseEntity post(@RequestBody Carro carro) {
+
+		try {
+			CarroDTO carroDTO = carroService.insert(carro);
+			URI location = getUri(carro.getId());
+			return ResponseEntity.created(location).build();
+		} catch (Exception exception) {
+			return ResponseEntity.badRequest().build();
+		}
+	}
+
+	private URI getUri(Long id) {
+		return ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+				.buildAndExpand((id)).toUri();
 	}
 
 	@PutMapping("/{id}")
