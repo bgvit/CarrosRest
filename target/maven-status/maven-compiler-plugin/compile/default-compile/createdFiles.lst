@@ -1,0 +1,5 @@
+br/com/bernardo/carrosrest/demo/service/CarroService.class
+br/com/bernardo/carrosrest/demo/dto/CarroDTO.class
+br/com/bernardo/carrosrest/demo/repository/CarroRepository.class
+br/com/bernardo/carrosrest/demo/domain/Carro.class
+br/com/bernardo/carrosrest/demo/mapper/CarMapper.class
