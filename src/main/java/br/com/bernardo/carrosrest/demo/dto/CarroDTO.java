@@ -1,6 +1,6 @@
 package br.com.bernardo.carrosrest.demo.dto;
 
-import br.com.bernardo.carrosrest.demo.domain.Carro;
+import br.com.bernardo.carrosrest.demo.domain.CarroEntity;
 import br.com.bernardo.carrosrest.demo.mapper.CarroMapper;
 import br.com.bernardo.carrosrest.demo.mapper.CarroMapperImpl;
 
@@ -13,15 +13,15 @@ public class CarroDTO {
     public CarroDTO(){
     }
 
-    public CarroDTO(Carro carroDTO) {
+/*    public CarroDTO(CarroEntity carroDTO) {
         this.id = carroDTO.getId();
         this.nome = carroDTO.getNome();
         this.tipo = carroDTO.getTipo();
-    }
+    }*/
 
-    public CarroDTO create(Carro carro) {
+    public static CarroDTO create(CarroEntity carroEntity) {
         CarroMapper carroMapper = new CarroMapperImpl();
-        return carroMapper.toCarroDTO(carro);
+        return carroMapper.toCarroDTO(carroEntity);
     }
 
     public Long getId() {

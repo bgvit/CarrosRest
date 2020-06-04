@@ -1,45 +1,45 @@
 package br.com.bernardo.carrosrest.demo.mapper;
 
-import br.com.bernardo.carrosrest.demo.domain.Carro;
+import br.com.bernardo.carrosrest.demo.domain.CarroEntity;
 import br.com.bernardo.carrosrest.demo.dto.CarroDTO;
 import javax.annotation.Generated;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-05-29T15:02:59-0300",
+    date = "2020-06-02T13:57:21-0300",
     comments = "version: 1.3.1.Final, compiler: javac, environment: Java 1.8.0_252 (Private Build)"
 )
 @Component
 public class CarroMapperImpl implements CarroMapper {
 
     @Override
-    public CarroDTO toCarroDTO(Carro carro) {
-        if ( carro == null ) {
+    public CarroDTO toCarroDTO(CarroEntity carroEntity) {
+        if ( carroEntity == null ) {
             return null;
         }
 
         CarroDTO carroDTO = new CarroDTO();
 
-        carroDTO.setId( carro.getId() );
-        carroDTO.setNome( carro.getNome() );
-        carroDTO.setTipo( carro.getTipo() );
+        carroDTO.setId( carroEntity.getId() );
+        carroDTO.setNome( carroEntity.getNome() );
+        carroDTO.setTipo( carroEntity.getTipo() );
 
         return carroDTO;
     }
 
     @Override
-    public Carro toCarro(CarroDTO carroDTO) {
+    public CarroEntity toCarroEntity(CarroDTO carroDTO) {
         if ( carroDTO == null ) {
             return null;
         }
 
-        Carro carro = new Carro();
+        CarroEntity carroEntity = new CarroEntity();
 
-        carro.setId( carroDTO.getId() );
-        carro.setNome( carroDTO.getNome() );
-        carro.setTipo( carroDTO.getTipo() );
+        carroEntity.setId( carroDTO.getId() );
+        carroEntity.setNome( carroDTO.getNome() );
+        carroEntity.setTipo( carroDTO.getTipo() );
 
-        return carro;
+        return carroEntity;
     }
 }

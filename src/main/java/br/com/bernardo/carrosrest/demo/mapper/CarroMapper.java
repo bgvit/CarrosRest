@@ -1,11 +1,11 @@
 package br.com.bernardo.carrosrest.demo.mapper;
 
-import br.com.bernardo.carrosrest.demo.domain.Carro;
+import br.com.bernardo.carrosrest.demo.domain.CarroEntity;
 import br.com.bernardo.carrosrest.demo.dto.CarroDTO;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface CarroMapper {
-    CarroDTO toCarroDTO(Carro carro);
-    Carro toCarro(CarroDTO carroDTO);
+    CarroDTO toCarroDTO(CarroEntity carroEntity);
+    CarroEntity toCarroEntity(CarroDTO carroDTO);
 }

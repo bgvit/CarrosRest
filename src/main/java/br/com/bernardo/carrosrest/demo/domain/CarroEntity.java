@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity(name="carro")
-public class Carro {
+public class CarroEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,10 +14,10 @@ public class Carro {
 	private String nome;
 	private String tipo;
 
-	public Carro(){
+	public CarroEntity(){
 	}
 
-	public Carro(Long id, String nome, String tipo) {
+	public CarroEntity(Long id, String nome, String tipo) {
 		super();
 		this.id = id;
 		this.nome = nome;
