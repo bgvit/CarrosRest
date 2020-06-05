@@ -1,5 +1,6 @@
 /home/bernardo/Documentos/personal-projects/java-projects/CarrosRest/src/main/java/br/com/bernardo/carrosrest/demo/api/exception/ExceptionHandler.java
 /home/bernardo/Documentos/personal-projects/java-projects/CarrosRest/src/main/java/br/com/bernardo/carrosrest/demo/mapper/CarroMapper.java
+/home/bernardo/Documentos/personal-projects/java-projects/CarrosRest/src/main/java/br/com/bernardo/carrosrest/demo/api/exception/ObjectNotFoundException.java
 /home/bernardo/Documentos/personal-projects/java-projects/CarrosRest/src/main/java/br/com/bernardo/carrosrest/demo/api/CarroController.java
 /home/bernardo/Documentos/personal-projects/java-projects/CarrosRest/src/main/java/br/com/bernardo/carrosrest/demo/dto/CarroDTO.java
 /home/bernardo/Documentos/personal-projects/java-projects/CarrosRest/src/main/java/br/com/bernardo/carrosrest/demo/repository/CarroRepository.java

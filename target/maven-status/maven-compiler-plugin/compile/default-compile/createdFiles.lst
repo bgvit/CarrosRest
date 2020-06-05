@@ -1,5 +1,6 @@
 br/com/bernardo/carrosrest/demo/service/CarroService.class
 br/com/bernardo/carrosrest/demo/mapper/CarroMapper.class
+br/com/bernardo/carrosrest/demo/api/exception/ObjectNotFoundException.class
 br/com/bernardo/carrosrest/demo/api/CarroController.class
 br/com/bernardo/carrosrest/demo/api/exception/ExceptionHandler.class
 br/com/bernardo/carrosrest/demo/repository/CarroRepository.class

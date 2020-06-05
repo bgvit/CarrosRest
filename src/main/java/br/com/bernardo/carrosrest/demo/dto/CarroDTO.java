@@ -13,12 +13,6 @@ public class CarroDTO {
     public CarroDTO(){
     }
 
-/*    public CarroDTO(CarroEntity carroDTO) {
-        this.id = carroDTO.getId();
-        this.nome = carroDTO.getNome();
-        this.tipo = carroDTO.getTipo();
-    }*/
-
     public static CarroDTO create(CarroEntity carroEntity) {
         CarroMapper carroMapper = new CarroMapperImpl();
         return carroMapper.toCarroDTO(carroEntity);

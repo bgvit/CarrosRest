@@ -2,7 +2,6 @@ package br.com.bernardo.carrosrest.demo.api;
 
 import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 
 import br.com.bernardo.carrosrest.demo.dto.CarroDTO;
 import org.springframework.beans.factory.annotation.Autowired;
