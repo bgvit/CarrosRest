@@ -13,6 +13,5 @@ public class ExceptionHandler extends ResponseEntityExceptionHandler {
     }
     @org.springframework.web.bind.annotation.ExceptionHandler({IllegalArgumentException.class})
     public ResponseEntity errorBadRequest(Exception ex) {
-        return ResponseEntity.badRequest().build();
-    }
+        return ResponseEntity.badRequest().build();    }
 }

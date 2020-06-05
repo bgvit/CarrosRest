@@ -4,11 +4,19 @@ import br.com.bernardo.carrosrest.demo.domain.CarroEntity;
 import br.com.bernardo.carrosrest.demo.mapper.CarroMapper;
 import br.com.bernardo.carrosrest.demo.mapper.CarroMapperImpl;
 
+import java.util.Optional;
+
 public class CarroDTO {
 
     private Long id;
     private String nome;
     private String tipo;
+    private Optional<String> carOwner;
+
+    /*TODO:Manipular data em REST API, data, hora, timezone, data/hora*/
+    /*TODO:Criar um Enum de cor e manipula o enum / Ver: Ordinal / NOME*/
+    /*TODO: Tratar o optional acima. Se o optional tiver um valor e esse valor for nulo*/
+
 
     public CarroDTO(){
     }

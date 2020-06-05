@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.bernardo.carrosrest.demo.dto.CarroDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,17 +39,18 @@ public class CarroController {
 				ResponseEntity.noContent().build() :
 				ResponseEntity.ok(carros);
 	}
-	/*Nomenclatura das variáveis, retornar JSON - testar, fazer um exceptionhandler*/
-	@PostMapping
-	public ResponseEntity post(@RequestBody CarroEntity carroEntity) {
+	/*Modo de fazer sugerido pelo Mauricio em que você devolve o objeto na requisição
+	* TODO: Alterar os outros para enviar objeto na requisição*/
 
-		try {
-			CarroDTO carroDTO = carroService.insert(carroEntity);
-			URI location = getUri(carroEntity.getId());
-			return ResponseEntity.created(location).build();
-		} catch (Exception exception) {
-			return ResponseEntity.badRequest().build();
-		}
+	@PostMapping
+	@ResponseStatus(value = HttpStatus.CREATED)
+	public CarroDTO post(@RequestBody CarroEntity carroEntity) {
+
+		CarroDTO carroDTO = carroService.insert(carroEntity);
+		//URI location = getUri(carroEntity.getId());
+		//return ResponseEntity.created(location).build();
+		return carroDTO;
+
 	}
 
 	private URI getUri(Long id) {

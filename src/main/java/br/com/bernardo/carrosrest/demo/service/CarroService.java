@@ -21,6 +21,8 @@ public class CarroService {
 	@Autowired
 	private CarroRepository carroRepository;
 
+	/*TODO: Como a minha aplicação irá manipular uma API externa. Exemplo: viacep RECEBER O CEP E TRANSFORMAR EM ENDEREÇO E ARMAZENAR NA BASE. NO RETORNO DO CLIENTE< RETORNTAR TANTO COM O CEP QUANTO ENDEREÇO*/
+
 	public CarroDTO update(CarroEntity carro, Long id) {
 		Assert.notNull(id,"Não foi possível atualizar o registro");
 
