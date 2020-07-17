@@ -1,9 +1,10 @@
 package br.com.bernardo.carrosrest.demo.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import br.com.bernardo.carrosrest.demo.enums.CarroColor;
+
+import javax.persistence.*;
+import java.time.LocalTime;
+import java.time.ZonedDateTime;
 
 @Entity(name="carro")
 public class CarroEntity {
@@ -18,6 +19,13 @@ public class CarroEntity {
 	private String urlVideo;
 	private String latitude;
 	private String longitude;
+	private ZonedDateTime date;
+	private LocalTime hour_translated;
+
+	@Column(name = "cor")
+	@Enumerated(EnumType.STRING)
+	private CarroColor carroColor;
+
 
 	public CarroEntity(){
 	}
@@ -27,6 +35,7 @@ public class CarroEntity {
 		this.id = id;
 		this.nome = nome;
 		this.tipo = tipo;
+		setDate();
 	}
 	
 	public Long getId() {
@@ -84,4 +93,20 @@ public class CarroEntity {
 	public void setLongitude(String longitude) {
 		this.longitude = longitude;
 	}
+
+	public CarroColor getCarroColor() {	return carroColor; }
+	public void setCarroColor(String color) {
+		this.carroColor = CarroColor.getCarroColorFromString(color);
+	}
+
+	public ZonedDateTime getDate() { return date; }
+	public void setDate() {
+		this.date = ZonedDateTime.now();
+		this.hour_translated = this.date.toLocalTime();
+	}
+
+	public LocalTime getHour_translated() { return hour_translated; }
+	//TODO: Eu gostaria que não fosse possível setar o hour_translated, porém, tenho dúvidas se o Spring irá barrar se eu deletar o setter.
+	//TODO
+	public void setHour_translated(LocalTime hour_translated) { this.hour_translated = hour_translated;	}
 }

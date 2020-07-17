@@ -11,6 +11,7 @@ public class CarroDTO {
     private Long id;
     private String nome;
     private String tipo;
+    private String carroColor;
     private Optional<String> carOwner;
 
     /*TODO:Manipular data em REST API, data, hora, timezone, data/hora*/
@@ -46,4 +47,11 @@ public class CarroDTO {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+
+    public Optional<String> getCarOwner() { return carOwner; }
+    public void setCarOwner(String carOwner) {
+        this.carOwner = Optional.ofNullable(carOwner); }
+
+    public String getCarroColor() { return carroColor; }
+    public void setCarroColor(String cor) { this.carroColor = cor; }
 }

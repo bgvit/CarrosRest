@@ -41,7 +41,6 @@ public class CarroService {
 			return CarroDTO.create(carroEntity);
 		} else {
 			return null;
-			//throw new RuntimeException("Não foi possível atualizar o registro");
 		}
 	}
 
@@ -51,10 +50,6 @@ public class CarroService {
 	}
 
 	public List<CarroDTO> getCarros(){
-		/*
-		List<CarroDTO> list = rep.findAll().stream().map(CarroDTO::create).collect(Collectors.toList());
-        return list;
-		* */
 		return carroRepository.findAll()
 				.stream()
 				.map(CarroDTO::create)
