@@ -1,9 +1,5 @@
 package br.com.bernardo.carrosrest.demo.dto;
 
-import br.com.bernardo.carrosrest.demo.domain.CarroEntity;
-import br.com.bernardo.carrosrest.demo.mapper.CarroMapper;
-import br.com.bernardo.carrosrest.demo.mapper.CarroMapperImpl;
-
 import java.util.Optional;
 
 public class CarroDTO {
@@ -12,7 +8,7 @@ public class CarroDTO {
     private String nome;
     private String tipo;
     private String carroColor;
-    private Optional<String> carOwner;
+    private String carOwner;
 
     /*TODO:Manipular data em REST API, data, hora, timezone, data/hora*/
     /*TODO:Criar um Enum de cor e manipula o enum / Ver: Ordinal / NOME*/
@@ -20,11 +16,6 @@ public class CarroDTO {
 
 
     public CarroDTO(){
-    }
-
-    public static CarroDTO create(CarroEntity carroEntity) {
-        CarroMapper carroMapper = new CarroMapperImpl();
-        return carroMapper.toCarroDTO(carroEntity);
     }
 
     public Long getId() {
@@ -48,9 +39,8 @@ public class CarroDTO {
         this.tipo = tipo;
     }
 
-    public Optional<String> getCarOwner() { return carOwner; }
-    public void setCarOwner(String carOwner) {
-        this.carOwner = Optional.ofNullable(carOwner); }
+    public String getCarOwner() { return carOwner; }
+    public void setCarOwner(String carOwner) { this.carOwner = carOwner; }
 
     public String getCarroColor() { return carroColor; }
     public void setCarroColor(String cor) { this.carroColor = cor; }

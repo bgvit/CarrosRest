@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import br.com.bernardo.carrosrest.demo.api.exception.ObjectNotFoundException;
 import br.com.bernardo.carrosrest.demo.domain.CarroEntity;
 import br.com.bernardo.carrosrest.demo.dto.CarroDTO;
+import br.com.bernardo.carrosrest.demo.mapper.CarroMapper;
 import br.com.bernardo.carrosrest.demo.repository.CarroRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,24 +22,22 @@ public class CarroService {
 	@Autowired
 	private CarroRepository carroRepository;
 
+	@Autowired
+	CarroMapper carroMapper;
+
 	/*TODO: Como a minha aplicação irá manipular uma API externa. Exemplo: viacep RECEBER O CEP E TRANSFORMAR EM ENDEREÇO E ARMAZENAR NA BASE. NO RETORNO DO CLIENTE< RETORNTAR TANTO COM O CEP QUANTO ENDEREÇO*/
 
-	public CarroDTO update(CarroEntity carro, Long id) {
+	public CarroDTO update(CarroDTO carro, Long id) {
 		Assert.notNull(id,"Não foi possível atualizar o registro");
-
 		// Busca o carro no banco de dados
-		Optional<CarroEntity> foundCarroEntity = carroRepository.findById(id);
-		if(foundCarroEntity.isPresent()) {
-			CarroEntity carroEntity = foundCarroEntity.get();
-			// Copiar as propriedades
-			carroEntity.setNome(carro.getNome());
-			carroEntity.setTipo(carro.getTipo());
-			System.out.println("Carro id " + carroEntity.getId());
-
+		Optional<CarroEntity> carroEntityOptional = carroRepository.findById(id);
+		if(carroEntityOptional.isPresent()) {
+			CarroEntity carroEntityToBeUpdated = carroEntityOptional.get();
+			System.out.println("Carro id " + carroEntityToBeUpdated.getId());
+			fillCarroEntityToBeUpdated(carroEntityToBeUpdated, carro);
 			// Atualiza o carro
-			carroRepository.save(carroEntity);
-
-			return CarroDTO.create(carroEntity);
+			carroRepository.save(carroEntityToBeUpdated);
+			return carroMapper.toCarroDTO(carroEntityToBeUpdated);
 		} else {
 			return null;
 		}
@@ -46,33 +45,46 @@ public class CarroService {
 
 	public CarroDTO getCarroById(Long id) {
 		Optional<CarroEntity> carroEntity = carroRepository.findById(id);
-		return carroEntity.map(CarroDTO::create).orElseThrow(() -> new ObjectNotFoundException("Carro não encontrado"));
+		return carroEntity.map(ce -> carroMapper.toCarroDTO(ce)).orElseThrow(() -> new ObjectNotFoundException("Carro não encontrado"));
 	}
 
 	public List<CarroDTO> getCarros(){
 		return carroRepository.findAll()
 				.stream()
-				.map(CarroDTO::create)
+				.map(ce -> carroMapper.toCarroDTO(ce))
 				.collect(Collectors.toList());
 	}
 
 	public List<CarroDTO> getCarrosByTipo(String tipo) {
 		return carroRepository.findByTipo(tipo)
 				.stream()
-				.map(CarroDTO::create)
+				.map(ce -> carroMapper.toCarroDTO(ce))
 				.collect(Collectors.toList());
 	}
 
-	public CarroEntity save(CarroEntity carroEntity) {
+	public CarroEntity save(CarroDTO carroDTO) {
+		CarroEntity carroEntity = carroMapper.toCarroEntity(carroDTO);
 		return carroRepository.save(carroEntity);
 	}
 
-	public CarroDTO insert(CarroEntity carroEntity) {
-		Assert.isNull(carroEntity.getId(), "Não foi possível inserir o registro");
-		return CarroDTO.create(carroRepository.save(carroEntity));
+	public CarroDTO insert(CarroDTO carroDTO) {
+		Assert.isNull(carroDTO.getId(), "Não foi possível inserir o registro");
+		CarroEntity carroEntity = carroMapper.toCarroEntity(carroDTO);
+		carroEntity.setDate();
+		CarroEntity carroPersistedEntity = carroRepository.save(carroEntity);
+		CarroDTO carroPersistedDTO = carroMapper.toCarroDTO(carroPersistedEntity);
+		return carroPersistedDTO;
 	}
 
 	public void delete(Long id) {
 		carroRepository.deleteById(id);
+	}
+
+	public void fillCarroEntityToBeUpdated(CarroEntity carroEntity, CarroDTO carroDTO) {
+		// Copiar as propriedades - poucos elementos somente para teste
+		carroEntity.setNome(carroDTO.getNome());
+		carroEntity.setTipo(carroDTO.getTipo());
+		carroEntity.setCarOwner(carroDTO.getCarOwner());
+		carroEntity.setCarroColor(carroDTO.getCarroColor());
 	}
 }

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-07-14T23:43:58-0300",
+    date = "2020-07-24T01:35:44-0300",
     comments = "version: 1.3.1.Final, compiler: javac, environment: Java 1.8.0_252 (Private Build)"
 )
 @Component
@@ -24,6 +24,10 @@ public class CarroMapperImpl implements CarroMapper {
         carroDTO.setId( carroEntity.getId() );
         carroDTO.setNome( carroEntity.getNome() );
         carroDTO.setTipo( carroEntity.getTipo() );
+        carroDTO.setCarOwner( carroEntity.getCarOwner() );
+        if ( carroEntity.getCarroColor() != null ) {
+            carroDTO.setCarroColor( carroEntity.getCarroColor().name() );
+        }
 
         return carroDTO;
     }
@@ -39,6 +43,8 @@ public class CarroMapperImpl implements CarroMapper {
         carroEntity.setId( carroDTO.getId() );
         carroEntity.setNome( carroDTO.getNome() );
         carroEntity.setTipo( carroDTO.getTipo() );
+        carroEntity.setCarroColor( carroDTO.getCarroColor() );
+        carroEntity.setCarOwner( carroDTO.getCarOwner() );
 
         return carroEntity;
     }

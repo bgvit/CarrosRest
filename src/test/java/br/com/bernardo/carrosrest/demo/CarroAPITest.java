@@ -3,6 +3,7 @@ package br.com.bernardo.carrosrest.demo;
 import br.com.bernardo.carrosrest.demo.api.exception.ObjectNotFoundException;
 import br.com.bernardo.carrosrest.demo.domain.CarroEntity;
 import br.com.bernardo.carrosrest.demo.dto.CarroDTO;
+import br.com.bernardo.carrosrest.demo.mapper.CarroMapper;
 import br.com.bernardo.carrosrest.demo.service.CarroService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,9 @@ class CarroAPITest {
 	@Autowired
 	private CarroService carroService;
 
+	@Autowired
+	private CarroMapper carroMapper;
+
 	@Test
 	void contextLoads() {
 	}
@@ -26,7 +30,7 @@ class CarroAPITest {
 		carro.setNome("Ferrari");
 		carro.setTipo("esportivos");
 
-		CarroDTO carroDTO = carroService.insert(carro);
+		CarroDTO carroDTO = carroService.insert(carroMapper.toCarroDTO(carro));
 		assertNotNull(carroDTO);
 
 		Long id = carroDTO.getId();
@@ -50,13 +54,13 @@ class CarroAPITest {
 		}
 
 	}
-	@Test
-	public void testListaPorTipo(){
-		assertEquals(10, carroService.getCarrosByTipo("classicos").size());
-		assertEquals(10,carroService.getCarrosByTipo("esportivos").size());
-		assertEquals(10,carroService.getCarrosByTipo("luxo").size());
-		assertEquals(0, carroService.getCarrosByTipo("x").size());
-	}
+//	@Test
+//	public void testListaPorTipo(){
+//		assertEquals(10, carroService.getCarrosByTipo("classicos").size());
+//		assertEquals(10,carroService.getCarrosByTipo("esportivos").size());
+//		assertEquals(10,carroService.getCarrosByTipo("luxo").size());
+//		assertEquals(0, carroService.getCarrosByTipo("x").size());
+//	}
 	@Test
 	public void testGet() {
 		CarroDTO carroDTO = carroService.getCarroById(11L);

@@ -21,6 +21,7 @@ public class CarroEntity {
 	private String longitude;
 	private ZonedDateTime date;
 	private LocalTime hour_translated;
+	private String carOwner;
 
 	@Column(name = "cor")
 	@Enumerated(EnumType.STRING)
@@ -109,4 +110,7 @@ public class CarroEntity {
 	//TODO: Eu gostaria que não fosse possível setar o hour_translated, porém, tenho dúvidas se o Spring irá barrar se eu deletar o setter.
 	//TODO
 	public void setHour_translated(LocalTime hour_translated) { this.hour_translated = hour_translated;	}
+
+	public String getCarOwner() { return carOwner; }
+	public void setCarOwner(String carOwner) { this.carOwner = carOwner; }
 }

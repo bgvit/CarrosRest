@@ -2,10 +2,11 @@ br/com/bernardo/carrosrest/demo/service/CarroService.class
 br/com/bernardo/carrosrest/demo/mapper/CarroMapper.class
 br/com/bernardo/carrosrest/demo/api/exception/ObjectNotFoundException.class
 br/com/bernardo/carrosrest/demo/api/CarroController.class
+br/com/bernardo/carrosrest/demo/api/SwaggerConfig.class
+br/com/bernardo/carrosrest/demo/mapper/CarroMapperImpl.class
+br/com/bernardo/carrosrest/demo/dto/CarroDTO.class
 br/com/bernardo/carrosrest/demo/api/exception/ExceptionHandler.class
 br/com/bernardo/carrosrest/demo/repository/CarroRepository.class
 br/com/bernardo/carrosrest/demo/domain/CarroEntity.class
-br/com/bernardo/carrosrest/demo/api/SwaggerConfig.class
 br/com/bernardo/carrosrest/demo/CarrosRestApplication.class
-br/com/bernardo/carrosrest/demo/mapper/CarroMapperImpl.class
-br/com/bernardo/carrosrest/demo/dto/CarroDTO.class
+br/com/bernardo/carrosrest/demo/enums/CarroColor.class

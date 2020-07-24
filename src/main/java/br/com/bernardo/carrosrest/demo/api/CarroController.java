@@ -42,15 +42,14 @@ public class CarroController {
 
 	@PostMapping
 	@ResponseStatus(value = HttpStatus.CREATED)
-	public CarroDTO post(@RequestBody CarroEntity carroEntity) {
-		CarroDTO carroDTO = carroService.insert(carroEntity);
-		return carroDTO;
+	public CarroDTO post(@RequestBody CarroDTO carroDTORequest) {
+		CarroDTO carroDTOResponse = carroService.insert(carroDTORequest);
+		return carroDTOResponse;
 	}
 
 	@PutMapping("/{id}")
-	public CarroDTO put(@PathVariable("id") Long id, @RequestBody CarroEntity carroEntity) {
-		carroEntity.setId(id);
-		CarroDTO foundCarroEntity = carroService.update(carroEntity, id);
+	public CarroDTO put(@PathVariable("id") Long id, @RequestBody CarroDTO carroDTORequest) {
+		CarroDTO foundCarroEntity = carroService.update(carroDTORequest, id);
 		return foundCarroEntity;
 	}
 
