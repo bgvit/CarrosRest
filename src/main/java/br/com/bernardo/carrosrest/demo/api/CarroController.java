@@ -47,6 +47,8 @@ public class CarroController {
 		return carroDTOResponse;
 	}
 
+	@PostMapping("/{id}/{cep}")
+
 	@PutMapping("/{id}")
 	public CarroDTO put(@PathVariable("id") Long id, @RequestBody CarroDTO carroDTORequest) {
 		CarroDTO foundCarroEntity = carroService.update(carroDTORequest, id);
