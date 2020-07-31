@@ -24,7 +24,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
+		<!-- Spring Web Flux-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
 		<!-- Dev Tools -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -32,6 +36,7 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
+
 		<!-- Spring Cloud Feign -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
@@ -85,6 +90,7 @@
 			<version>2.7.0</version>
 			<scope>compile</scope>
 		</dependency>
+
 		<!-- Apache Commons Lang -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>

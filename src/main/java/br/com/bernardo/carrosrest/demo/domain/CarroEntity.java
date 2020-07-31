@@ -22,6 +22,8 @@ public class CarroEntity {
 	private ZonedDateTime date;
 	private LocalTime hour_translated;
 	private String carOwner;
+	@OneToOne()
+	private AddressEntity addressEntity;
 
 	@Column(name = "cor")
 	@Enumerated(EnumType.STRING)

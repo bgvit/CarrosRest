@@ -2,7 +2,9 @@ package br.com.bernardo.carrosrest.demo.api;
 
 import java.util.List;
 
+import br.com.bernardo.carrosrest.demo.dto.AddressDTO;
 import br.com.bernardo.carrosrest.demo.dto.CarroDTO;
+import br.com.bernardo.carrosrest.demo.service.ExternalAddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,9 @@ public class CarroController {
 	
 	@Autowired
 	private CarroService carroService;
+
+	@Autowired
+	private ExternalAddressService externalAddressService;
 	
 	@GetMapping()
 	@ResponseStatus(HttpStatus.ACCEPTED)
@@ -42,12 +47,17 @@ public class CarroController {
 
 	@PostMapping
 	@ResponseStatus(value = HttpStatus.CREATED)
-	public CarroDTO post(@RequestBody CarroDTO carroDTORequest) {
+	public CarroDTO postCarro(@RequestBody CarroDTO carroDTORequest) {
 		CarroDTO carroDTOResponse = carroService.insert(carroDTORequest);
 		return carroDTOResponse;
 	}
 
-	@PostMapping("/{id}/{cep}")
+	@GetMapping("/cep/sincrono/{cep}")
+	@ResponseStatus(value = HttpStatus.OK)
+	public AddressDTO postAdress(@PathVariable("cep") String cep){
+		AddressDTO addressDTO = externalAddressService.getAdressFromAPISynchronously(cep);
+		return addressDTO;
+	}
 
 	@PutMapping("/{id}")
 	public CarroDTO put(@PathVariable("id") Long id, @RequestBody CarroDTO carroDTORequest) {
