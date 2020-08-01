@@ -42,8 +42,6 @@ public class CarroController {
 		List<CarroDTO> carros = carroService.getCarrosByTipo(tipo);
 		return carros;
 	}
-	/*Modo de fazer sugerido pelo Mauricio em que você devolve o objeto na requisição
-	* TODO: Alterar os outros para enviar objeto na requisição*/
 
 	@PostMapping
 	@ResponseStatus(value = HttpStatus.CREATED)

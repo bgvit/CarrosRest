@@ -25,8 +25,6 @@ public class CarroService {
 	@Autowired
 	CarroMapper carroMapper;
 
-	/*TODO: Como a minha aplicação irá manipular uma API externa. Exemplo: viacep RECEBER O CEP E TRANSFORMAR EM ENDEREÇO E ARMAZENAR NA BASE. NO RETORNO DO CLIENTE< RETORNTAR TANTO COM O CEP QUANTO ENDEREÇO*/
-
 	public CarroDTO update(CarroDTO carro, Long id) {
 		Assert.notNull(id,"Não foi possível atualizar o registro");
 		// Busca o carro no banco de dados

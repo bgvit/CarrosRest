@@ -2,10 +2,7 @@ package br.com.bernardo.carrosrest.demo.domain;
 
 import com.fasterxml.jackson.annotation.JsonSetter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class AddressEntity {

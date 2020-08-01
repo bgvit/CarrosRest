@@ -4,7 +4,8 @@ package br.com.bernardo.carrosrest.demo.enums;
 import org.apache.commons.lang3.StringUtils;
 
 public enum CarroColor {
-
+    //TODO: Ver quando é ordinal
+    //TODO: No momento de tentar fazer alguma coisa funcionar, comemora e depois para. Pensa: Essa é a melhor forma de fazer?
     RED("Vermelho"),
     BLUE("Azul"),
     ORANGE("Laranja"),

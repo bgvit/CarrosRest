@@ -19,11 +19,12 @@ public class CarroEntity {
 	private String urlVideo;
 	private String latitude;
 	private String longitude;
+	//TODO: Trocar para UTC(OffSetDate) ou EpochTime(EpochTime)
 	private ZonedDateTime date;
 	private LocalTime hour_translated;
 	private String carOwner;
-	@OneToOne()
-	private AddressEntity addressEntity;
+//	@OneToOne
+//	private AddressEntity addressEntity;
 
 	@Column(name = "cor")
 	@Enumerated(EnumType.STRING)
@@ -99,6 +100,7 @@ public class CarroEntity {
 
 	public CarroColor getCarroColor() {	return carroColor; }
 	public void setCarroColor(String color) {
+		//TODO: Melhor colocar essa conversar ou mudar essa regra numa classe controller
 		this.carroColor = CarroColor.getCarroColorFromString(color);
 	}
 
@@ -110,7 +112,7 @@ public class CarroEntity {
 
 	public LocalTime getHour_translated() { return hour_translated; }
 	//TODO: Eu gostaria que não fosse possível setar o hour_translated, porém, tenho dúvidas se o Spring irá barrar se eu deletar o setter.
-	//TODO
+	//TODO:trocar o underline, somente utilizar CamelCase
 	public void setHour_translated(LocalTime hour_translated) { this.hour_translated = hour_translated;	}
 
 	public String getCarOwner() { return carOwner; }

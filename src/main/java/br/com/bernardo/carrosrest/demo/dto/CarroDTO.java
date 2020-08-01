@@ -1,5 +1,7 @@
 package br.com.bernardo.carrosrest.demo.dto;
 
+import br.com.bernardo.carrosrest.demo.enums.CarroColor;
+
 import java.util.Optional;
 
 public class CarroDTO {
@@ -7,13 +9,12 @@ public class CarroDTO {
     private Long id;
     private String nome;
     private String tipo;
-    private String carroColor;
+    private CarroColor carroColor;
     private String carOwner;
 
     /*TODO:Manipular data em REST API, data, hora, timezone, data/hora*/
-    /*TODO:Criar um Enum de cor e manipula o enum / Ver: Ordinal / NOME*/
-    /*TODO: Tratar o optional acima. Se o optional tiver um valor e esse valor for nulo*/
-
+    //TODO: Fazer algum experimento que receba data no payload de um request
+    //TODO: Trocar o carroColor de String para CarroColor enum para evitar o tratamento de String
 
     public CarroDTO(){
     }
