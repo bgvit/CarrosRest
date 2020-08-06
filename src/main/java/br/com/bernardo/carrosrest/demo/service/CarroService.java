@@ -83,6 +83,6 @@ public class CarroService {
 		carroEntity.setNome(carroDTO.getNome());
 		carroEntity.setTipo(carroDTO.getTipo());
 		carroEntity.setCarOwner(carroDTO.getCarOwner());
-		carroEntity.setCarroColor(carroDTO.getCarroColor());
+//		carroEntity.setCarroColor(carroDTO.getCarroColor());
 	}
 }

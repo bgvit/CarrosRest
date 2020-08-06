@@ -43,6 +43,6 @@ public class CarroDTO {
     public String getCarOwner() { return carOwner; }
     public void setCarOwner(String carOwner) { this.carOwner = carOwner; }
 
-    public String getCarroColor() { return carroColor; }
-    public void setCarroColor(String cor) { this.carroColor = cor; }
+//    public String getCarroColor() { return carroColor; }
+//    public void setCarroColor(String cor) { this.carroColor = cor; }
 }

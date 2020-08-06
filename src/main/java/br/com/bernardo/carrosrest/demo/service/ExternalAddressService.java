@@ -13,8 +13,9 @@ import org.springframework.web.client.RestTemplate;
 //TODO:Pensar nisso como um resource. Pensar na ideia que o mauricio trouxe
 public class ExternalAddressService {
 
-    @Value("${api.cep.url}")
+
     private String API_URL;
+
     private static final String TYPE_SEARCH = "/json/";
 
     public AddressDTO getAdressFromAPISynchronously(String cep){
