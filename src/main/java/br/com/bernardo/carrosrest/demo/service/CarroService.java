@@ -11,6 +11,9 @@ import br.com.bernardo.carrosrest.demo.mapper.CarroMapper;
 import br.com.bernardo.carrosrest.demo.repository.CarroRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
@@ -25,6 +28,7 @@ public class CarroService {
 	@Autowired
 	CarroMapper carroMapper;
 
+	@CachePut(value = "carrosById", key = "#id")
 	public CarroDTO update(CarroDTO carro, Long id) {
 		Assert.notNull(id,"Não foi possível atualizar o registro");
 		// Busca o carro no banco de dados
@@ -40,19 +44,21 @@ public class CarroService {
 			return null;
 		}
 	}
-
+	@Cacheable(value = "carrosById", key = "#id")
 	public CarroDTO getCarroById(Long id) {
 		Optional<CarroEntity> carroEntity = carroRepository.findById(id);
 		return carroEntity.map(ce -> carroMapper.toCarroDTO(ce)).orElseThrow(() -> new ObjectNotFoundException("Carro não encontrado"));
 	}
-
+	//TODO: Fazer solução para invalidação de cache.
+	//TODO: Baixar mcare-redir
+	@Cacheable(value= "carrosAll")
 	public List<CarroDTO> getCarros(){
 		return carroRepository.findAll()
 				.stream()
 				.map(ce -> carroMapper.toCarroDTO(ce))
 				.collect(Collectors.toList());
 	}
-
+	@Cacheable(value = "carrosByTipo", key = "#tipo")
 	public List<CarroDTO> getCarrosByTipo(String tipo) {
 		return carroRepository.findByTipo(tipo)
 				.stream()
@@ -73,7 +79,7 @@ public class CarroService {
 		CarroDTO carroPersistedDTO = carroMapper.toCarroDTO(carroPersistedEntity);
 		return carroPersistedDTO;
 	}
-
+	@CacheEvict(value = "carrosById", key = "#id")
 	public void delete(Long id) {
 		carroRepository.deleteById(id);
 	}
