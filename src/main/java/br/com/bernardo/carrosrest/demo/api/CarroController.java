@@ -1,5 +1,6 @@
 package br.com.bernardo.carrosrest.demo.api;
 
+import java.net.URI;
 import java.util.List;
 
 import br.com.bernardo.carrosrest.demo.dto.AddressDTO;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import br.com.bernardo.carrosrest.demo.domain.CarroEntity;
 import br.com.bernardo.carrosrest.demo.service.CarroService;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
 @RequestMapping("/api/v1/carros")
@@ -24,49 +26,44 @@ public class CarroController {
 	private ExternalAddressService externalAddressService;
 	
 	@GetMapping()
-	@ResponseStatus(HttpStatus.ACCEPTED)
-	public List<CarroDTO> get() {
-		return carroService.getCarros();
+	public ResponseEntity<List<CarroDTO>> get() {
+		return ResponseEntity.accepted().body(carroService.getCarros());
 	}
 
 	@GetMapping("/{id}")
-	@ResponseStatus(HttpStatus.ACCEPTED)
-	public CarroDTO getCarrosById(@PathVariable("id") Long id) {
+	public ResponseEntity<CarroDTO> getCarrosById(@PathVariable("id") Long id) {
 		CarroDTO carroDTO = carroService.getCarroById(id);
-		return carroDTO;
+		return ResponseEntity.ok().body(carroDTO);
 	}
 
 	@GetMapping("/tipo/{tipo}")
-	@ResponseStatus(HttpStatus.ACCEPTED)
-	public List<CarroDTO> getCarrosByTipo(@PathVariable("tipo") String tipo) {
+	public ResponseEntity<List<CarroDTO>> getCarrosByTipo(@PathVariable("tipo") String tipo) {
 		List<CarroDTO> carros = carroService.getCarrosByTipo(tipo);
-		return carros;
+		return ResponseEntity.ok().body(carros);
 	}
 
 	@PostMapping
-	@ResponseStatus(value = HttpStatus.CREATED)
-	public CarroDTO postCarro(@RequestBody CarroDTO carroDTORequest) {
+	public ResponseEntity<CarroDTO> postCarro(@RequestBody CarroDTO carroDTORequest) {
 		CarroDTO carroDTOResponse = carroService.insert(carroDTORequest);
-		return carroDTOResponse;
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(carroDTOResponse.getId()).toUri();
+		return ResponseEntity.created(uri).body(carroDTOResponse);
 	}
 
 	@GetMapping("/cep/sincrono/{cep}")
-	@ResponseStatus(value = HttpStatus.OK)
-	public AddressDTO postAdress(@PathVariable("cep") String cep){
+	public ResponseEntity<AddressDTO> postAdress(@PathVariable("cep") String cep){
 		AddressDTO addressDTO = externalAddressService.getAdressFromAPISynchronously(cep);
-		return addressDTO;
+		return ResponseEntity.ok().body(addressDTO);
 	}
 
 	@PutMapping("/{id}")
-	public CarroDTO put(@PathVariable("id") Long id, @RequestBody CarroDTO carroDTORequest) {
+	public ResponseEntity<Void> put(@PathVariable("id") Long id, @RequestBody CarroDTO carroDTORequest) {
 		CarroDTO foundCarroEntity = carroService.update(carroDTORequest, id);
-		return foundCarroEntity;
+		return ResponseEntity.noContent().build();
 	}
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity delete(@PathVariable("id") Long id) {
 		carroService.delete(id);
-		return ResponseEntity.ok().build();
+		return ResponseEntity.noContent().build();
 	}
-
 }
