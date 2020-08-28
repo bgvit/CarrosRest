@@ -15,4 +15,8 @@ public class ExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity errorBadRequest(Exception ex) {
         return ResponseEntity.badRequest().build();
     }
+    @org.springframework.web.bind.annotation.ExceptionHandler({ObjectNotFoundException.class})
+    public ResponseEntity objectNotFound(Exception ex) {
+        return ResponseEntity.notFound().build();
+    }
 }
