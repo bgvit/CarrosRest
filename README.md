@@ -13,7 +13,7 @@ It consists in a API that Create, Read, Update and Delete different models of ca
 - Swagger;
 - ExceptionHandler;
 - Learn how to manipulate data classes
-- lambdas and stream on java 8;
+- Lambdas and Streams on Java 8;
 - Uses of DTO;
 
 ## How to run
