@@ -20,5 +20,5 @@ It consists in a API that Create, Read, Update and Delete different models of ca
 
 Imports the project into your IDE, start it and enjoy!
 
-## API Documentation (Swagger): 
+## API Documentation (Swagger)
 http://localhost:8080/swagger-ui.html
